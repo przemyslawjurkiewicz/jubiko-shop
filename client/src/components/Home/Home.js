@@ -8,10 +8,17 @@ class Home extends Component {
 
     render() {
         return (
-            <div className='layout container'>
+            <div className='container--flex'>
+                <div className='col-lg-4 col-sm-12'>
                 <h1>
                     hej
                </h1>
+               </div>
+               <div className='col-lg-8 col-sm-12'>
+               <h1>
+                    hhaa
+               </h1>
+               </div>
             </div>
         )
     }

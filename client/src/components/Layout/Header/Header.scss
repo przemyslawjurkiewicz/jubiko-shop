@@ -1,0 +1,16 @@
+@import '../../../assets/sasss/variables';
+
+a {
+  color: $dark-grey;
+ 
+  .nav-link {
+    color: $dark-grey;
+  }
+  &:hover {
+    color: $grey;
+  }
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: $brand-color;
+}

@@ -1,11 +1,20 @@
-import  React, { Component }  from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import './App.scss';
+
+// Import bootstrap styles
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Import FontAwsome
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faStroopwafel, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+
 
 // Import components
 import Layout from './Layout/Layout';
 import Home from './Home/Home';
 
+// Icons Liblary
+library.add(faStroopwafel, faShoppingBag)
 
 export default class App extends Component {
   render() {
@@ -14,7 +23,7 @@ export default class App extends Component {
         <Layout>
           <Switch>
             <Route exact path={'/'} component={Home} />
-            </Switch>
+          </Switch>
         </Layout>
       </BrowserRouter>
     );

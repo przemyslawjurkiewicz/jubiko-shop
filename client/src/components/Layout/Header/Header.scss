@@ -2,7 +2,7 @@
 
 a {
   color: $dark-grey;
- 
+
   .nav-link {
     color: $dark-grey;
   }
@@ -11,6 +11,20 @@ a {
   }
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    background-color: $brand-color;
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: $brand-color;
+}
+
+.navbar-light .navbar-toggler {
+  color: $dark-grey;
+  border-color: $dark-grey;
+}
+
+.show {
+  position: fixed;
+  top: 80px;
+  right: 0;
+  z-index: 10;
+  width: 100vw;
 }

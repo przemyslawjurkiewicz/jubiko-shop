@@ -8,7 +8,6 @@ const ProductCart = (props) => (
         <div className="card-body">
             <h5 className="card-title">{props.product.name}</h5>
             <p className="card-text">{props.product.description}</p>
-
         </div>
     </div>
 );

@@ -37,7 +37,7 @@ class Home extends Component {
     const filtered = chosencategory !== "All"
       ? Products.filter(item => item.category === chosencategory)
       : Products
-    this.setState({ products: filtered, currentPage: 1 })
+    this.setState({ products: filtered })
     this.handleSelected(1);
   }
 
@@ -97,6 +97,7 @@ class Home extends Component {
               );
             })}
           <div className="w-100 d-flex justify-content-center mt-auto">
+            {this.state.products.length > this.pageSize &&
             <PaginationComponent
               totalItems={this.state.products.length}
               pageSize={this.pageSize}
@@ -104,7 +105,7 @@ class Home extends Component {
                 .handleSelected
                 .bind(this)}
               activePage={this.state.currentPage}
-            />
+            />}
           </div>
         </div>
       </div>

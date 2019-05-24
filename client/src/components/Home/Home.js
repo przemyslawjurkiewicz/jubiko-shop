@@ -84,7 +84,7 @@ class Home extends Component {
                         </li>
           </ul>
         </div>
-        <div className="col-md-8 col-12 d-flex flex-wrap justify-content-center">
+        <div className="col-md-8 col-12 d-flex flex-wrap justify-content-start">
           {this
             .state
             .products

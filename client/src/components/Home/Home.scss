@@ -1,0 +1,26 @@
+@import '../../assets/sasss/variables';
+
+.home {
+    .page-item.active .page-link {
+        background-color: $brand-color;
+        border-color: $brand-color;
+    }
+
+    .page-link {
+        color: $brand-color;
+
+        &:hover {
+            color: $dark-grey;
+        }
+    }
+
+    .nav-item {
+        cursor: pointer;
+        list-style: none;
+        padding-top: 5px;
+
+        &:hover {
+            color: $grey;
+        }
+    }
+}

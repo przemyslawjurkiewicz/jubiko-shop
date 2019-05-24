@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Import FontAwsome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faStroopwafel, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 
 
 // Import components
@@ -14,7 +14,7 @@ import Layout from './Layout/Layout';
 import Home from './Home/Home';
 
 // Icons Liblary
-library.add(faStroopwafel, faShoppingBag)
+library.add(faShoppingBag)
 
 export default class App extends Component {
   render() {

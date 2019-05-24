@@ -1,30 +1,32 @@
 @import '../../../assets/sasss/variables';
-
-a {
-  color: $dark-grey;
-
-  .nav-link {
+.header {
+  a {
     color: $dark-grey;
+
+    .nav-link {
+      color: $dark-grey;
+    }
+    &:hover {
+      color: $grey;
+    }
   }
-  &:hover {
-    color: $grey;
+
+  .nav-pills .nav-link.active,
+  .nav-pills .show > .nav-link {
+    background-color: $brand-color;
   }
-}
 
-.nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
-  background-color: $brand-color;
-}
+  .navbar-light .navbar-toggler {
+    color: $dark-grey;
+    border-color: $dark-grey;
+  }
 
-.navbar-light .navbar-toggler {
-  color: $dark-grey;
-  border-color: $dark-grey;
-}
-
-.show {
-  position: fixed;
-  top: 80px;
-  right: 0;
-  z-index: 10;
-  width: 100vw;
+  .show {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+  }
 }

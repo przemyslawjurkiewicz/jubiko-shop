@@ -1,0 +1,13 @@
+@import '../../../assets/sasss/variables';
+
+.left-menu {
+    .nav-item {
+        cursor: pointer;
+        list-style: none;
+        padding-top: 5px;
+
+        &:hover {
+            color: $grey;
+        }
+    }
+}

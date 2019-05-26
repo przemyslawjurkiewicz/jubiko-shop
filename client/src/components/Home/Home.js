@@ -8,7 +8,7 @@ import './Home.scss';
 import Products from '../../assets/Products';
 
 // Import components
-import PorductCart from './ProductCart/ProductCart';
+import PorductList from './ProductsList/ProductList';
 import LeftMenu from './LeftMenu/LeftMenu';
 
 class Home extends Component {
@@ -48,20 +48,17 @@ class Home extends Component {
       <div className="home d-flex flex-md-row flex-column">
         <div className="col-md-4 col-12 justify-content-center">
           <LeftMenu
-            categories={[...new Set(Products.map(element=>element.category))]}
+            categories={[...new Set(Products.map(element => element.category))]}
             onChangeCategory={event => this.changeCategory(event)}
           />
         </div>
-        <div className="col-md-8 col-12 d-flex flex-wrap justify-content-start">
-          {this.state.products
-            .slice(this.state.currentProducts[0], this.state.currentProducts[1])
-            .map((product, i) => {
-              return (
-                <div className="p-2 col-md-6 col-12" key={i}>
-                  <PorductCart product={product} />
-                </div>
-              );
-            })}
+        <div className="col-md-8 col-12 ">
+          <PorductList
+            products={this.state.products.slice(
+              this.state.currentProducts[0],
+              this.state.currentProducts[1]
+            )}
+          />
           <div className="w-100 d-flex justify-content-center mt-auto">
             {this.state.products.length > this.pageSize && (
               <PaginationComponent

@@ -1,0 +1,20 @@
+@import '../../../../assets/sasss/variables';
+
+.card-body {
+    .price {
+        color: $brand-color;
+        font-size: $big-font-size;
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        background-color: $brand-color;
+        border-color: $brand-color;
+
+        &:hover {
+            color: $brand-color;
+            background-color: #fff;
+        }
+
+    }
+}

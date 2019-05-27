@@ -52,7 +52,7 @@ class Home extends Component {
             onChangeCategory={event => this.changeCategory(event)}
           />
         </div>
-        <div className="col-md-8 col-12 ">
+        <div className="product-list col-md-8 col-12 ">
           <PorductList
             products={this.state.products.slice(
               this.state.currentProducts[0],

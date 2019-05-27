@@ -1,9 +1,13 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './ProductCart.scss';
 
 
 const ProductCart = props => (
-  <div className="card-deck">
+
+  <NavLink
+    exact to={"/product/" + props.product.id}
+    className="card-deck">
     <div className="card">
       <img
         src={props.product.imgSrc}
@@ -14,12 +18,13 @@ const ProductCart = props => (
         <h5 className="card-title">{props.product.name}</h5>
         <p className="card-text">{props.product.description}</p>
         <div className="d-flex align-items-center justify-content-around">
-        <p className="price ">{props.product.price.toLocaleString('pl-PL', {minimumFractionDigits: 2})} zł</p>
-        <p><button className="btn btn-primary btn-sm">Do koszyka</button></p>
+          <p className="price ">{props.product.price.toLocaleString('pl-PL', { minimumFractionDigits: 2 })} zł</p>
+          <p><button className="btn btn-primary btn-sm">Do koszyka</button></p>
         </div>
       </div>
     </div>
-  </div>
+
+  </NavLink>
 );
 
 export default ProductCart;

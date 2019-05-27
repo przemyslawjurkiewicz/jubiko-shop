@@ -1,20 +1,43 @@
 @import '../../../../assets/sasss/variables';
 
-.card-body {
+.product-list {
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+      color: inherit;
+    }
+    &:link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    &:visited {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    &:active {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+
+  .card-body {
     .price {
-        color: $brand-color;
-        font-size: $big-font-size;
-        font-weight: bold;
+      color: $brand-color;
+      font-size: $big-font-size;
+      font-weight: bold;
     }
 
     .btn-primary {
-        background-color: $brand-color;
-        border-color: $brand-color;
+      background-color: $brand-color;
+      border-color: $brand-color;
 
-        &:hover {
-            color: $brand-color;
-            background-color: #fff;
-        }
-
+      &:hover {
+        color: $brand-color;
+        background-color: #fff;
+      }
     }
+  }
 }

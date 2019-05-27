@@ -9,7 +9,7 @@ const Products = ([
                 ". Długość całkowita kolczyków: 6,3 cm (długość liścia: 3,5 cm). Masa pojedynczeg" +
                 "o kolczyka: ok. 1,8 g (dla porównania moneta 5 groszy waży ok. 2,5 g) ",
         "category": "Kolczyki",
-        "imgSrc": "./images/t1-1.jpg",
+        "imgSrc": "../../images/t1-1.jpg",
         "id": 1,
         "quantity": 1
     }, {
@@ -21,7 +21,7 @@ const Products = ([
                 " nadają tlenki tytanu, które będą cieszyły latami. Czubek igły nie wystaje poza " +
                 "zapięcie.Skrzydełka motylka wpisują się w prostokąt o wymiarach: 4,7 x 4 cm ",
         "category": "Broszki",
-        "imgSrc": "./images/t2-1.jpg",
+        "imgSrc": "../../images/t2-1.jpg",
         "id": 2,
         "quantity": 1
     }, {
@@ -35,7 +35,7 @@ const Products = ([
                 "4 cm + 2,8 cm szpary (bransoleta będzie dobra na nadgarstek o obwodzie ok 15 - 1" +
                 "6 cm). W razie potrzeby bransoletkę można rozgiąć. Szerokość: 3,2 cm ",
         "category": "Bransoletki",
-        "imgSrc": "./images/t3-1.jpg",
+        "imgSrc": "../../images/t3-1.jpg",
         "id": 3,
         "quantity": 1
     }, {
@@ -46,7 +46,7 @@ const Products = ([
                 "iu powierzchni tlenkami tytanu pod napięciem (anodowanie). Pierścionek jest hipo" +
                 "alergiczny, lekki i wytrzymały. Szerokość: 1,6 cm. Rozmiar jubilerski: 18,5 ",
         "category": "Pierścionki",
-        "imgSrc": "./images/t4-1.jpg",
+        "imgSrc": "../../images/t4-1.jpg",
         "id": 4,
         "quantity": 1
     }, {
@@ -58,7 +58,7 @@ const Products = ([
                 " kowalskie. Igła jest tak przegięta, że przy nacisku podczas noszenia nie wyjdzi" +
                 "e z haczyka. Czubek igły nie wystaje za zapięcie. Wymiary: 4,3x 3,9 cm",
         "category": "Broszki",
-        "imgSrc": "./images/t5-1.jpg",
+        "imgSrc": "../../images/t5-1.jpg",
         "id": 5,
         "quantity": 1
     }, {
@@ -72,7 +72,7 @@ const Products = ([
                 "ka. Czubek igły nie wystaje za zapięcie. Motyl wpisuje się w prostokąt o wymiara" +
                 "ch: 6,5 x 5,6 cm ",
         "category": "Broszki",
-        "imgSrc": "./images/t6-1.jpg",
+        "imgSrc": "../../images/t6-1.jpg",
         "id": 6,
         "quantity": 1
     }, {
@@ -84,7 +84,7 @@ const Products = ([
                 "ergiczna, lekka i wytrzymała. Średnica bransolety: 6,5 cm (bransoleta przechodzi" +
                 " przez złożoną dłoń o obwodzie ok 21 cm). Szerokość: 1,1 cm ",
         "category": "Bransoletki",
-        "imgSrc": "./images/t7-1.jpg",
+        "imgSrc": "../../images/t7-1.jpg",
         "id": 7,
         "quantity": 1
     }, {
@@ -97,7 +97,7 @@ const Products = ([
                 ". Długość całkowita kolczyków: 6,3 cm (długość liścia: 3,5 cm). Masa pojedynczeg" +
                 "o kolczyka: ok. 1,8 g (dla porównania moneta 5 groszy waży ok. 2,5 g) ",
         "category": "Kolczyki",
-        "imgSrc": "./images/t8-1.jpg",
+        "imgSrc": "../../images/t8-1.jpg",
         "id": 8,
         "quantity": 1
     }

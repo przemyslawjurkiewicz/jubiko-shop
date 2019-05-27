@@ -10,11 +10,14 @@ import Products from '../../assets/Products';
 // Import components
 import PorductList from './ProductsList/ProductList';
 import LeftMenu from './LeftMenu/LeftMenu';
+import DropDownMenu from './DropDownMenu/DropDownMenu';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isMobile: false,
+      width: window.innerWidth,
       products: Products,
       currentPage: 1,
       currentProducts: [0, 6]
@@ -22,6 +25,20 @@ class Home extends Component {
     this.pageSize = 6;
     this.pagesCount = Math.ceil(this.products / this.pageSize);
   }
+
+  componentWillMount() {
+    this.handleWindowSizeChange();
+    window.addEventListener('resize', this.handleWindowSizeChange);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleWindowSizeChange);
+  }
+
+  handleWindowSizeChange = () => {
+    this.setState({ width: window.innerWidth });
+    this.setState({ isMobile: this.state.width <= 767 })
+  };
 
   handleSelected(index) {
     let from = (index - 1) * this.pageSize;
@@ -47,10 +64,16 @@ class Home extends Component {
     return (
       <div className="home d-flex flex-md-row flex-column">
         <div className="col-md-4 col-12 justify-content-center">
-          <LeftMenu
-            categories={[...new Set(Products.map(element => element.category))]}
-            onChangeCategory={event => this.changeCategory(event)}
-          />
+          {!this.state.isMobile && (
+            <LeftMenu
+              categories={[...new Set(Products.map(element => element.category))]}
+              onChangeCategory={event => this.changeCategory(event)}
+            />)}
+            {this.state.isMobile && (
+            <DropDownMenu
+              categories={[...new Set(Products.map(element => element.category))]}
+              onChangeCategory={event => this.changeCategory(event)}
+            />)}
         </div>
         <div className="product-list col-md-8 col-12 ">
           <PorductList

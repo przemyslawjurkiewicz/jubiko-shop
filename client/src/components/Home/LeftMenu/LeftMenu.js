@@ -2,7 +2,7 @@ import React from 'react';
 import './LeftMenu.scss';
 
 const LeftMenu = props => (
-    <ul className="left-menu d-flex flex-column mt-2">
+    <ul className="left-menu d-flex flex-column mt-2 ">
         <p>Kategorie:</p>
         <li
             className="nav-item"

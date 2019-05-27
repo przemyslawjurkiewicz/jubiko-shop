@@ -62,7 +62,7 @@ const Products = ([
         "id": 5,
         "quantity": 1
     }, {
-        "name": "TTytanowa broszka/wisior - Motyl",
+        "name": "Tytanowa broszka/wisior - Motyl",
         "price": 155.00,
         "description": "Bransoletka wykonana ręcznie z tytanu.",
         "text": "Broszka jest wykonana ręcznie z tytanu. Jest bardzo lekka, hipoalergiczna. Motyl" +

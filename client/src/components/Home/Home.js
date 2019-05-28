@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PaginationComponent from 'react-reactstrap-pagination';
-
+import axios from 'axios';
 //Import styles
 import './Home.scss';
 
 // Import products
-import Products from '../../assets/Products';
+//import Products from '../../assets/Products';
 
 // Import components
 import PorductList from './ProductsList/ProductList';
@@ -16,9 +16,9 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      products: [],
       isMobile: false,
       width: window.innerWidth,
-      products: Products,
       currentPage: 1,
       currentProducts: [0, 6]
     };
@@ -28,6 +28,7 @@ class Home extends Component {
 
   componentWillMount() {
     this.handleWindowSizeChange();
+    this.axiosProducts();
     window.addEventListener('resize', this.handleWindowSizeChange);
   }
 
@@ -37,8 +38,20 @@ class Home extends Component {
 
   handleWindowSizeChange = () => {
     this.setState({ width: window.innerWidth });
-    this.setState({ isMobile: this.state.width <= 767 })
+    this.setState({ isMobile: this.state.width <= 767 });
   };
+
+  axiosProducts() {
+    axios
+      .get('/api/products')
+      .then(response => {
+        this.setState({ products: response.data.products });
+        console.log(this.state.products);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
   handleSelected(index) {
     let from = (index - 1) * this.pageSize;
@@ -54,8 +67,8 @@ class Home extends Component {
     const chosencategory = event.target.dataset.order;
     const filtered =
       chosencategory !== 'All'
-        ? Products.filter(item => item.category === chosencategory)
-        : Products;
+        ? this.state.products.filter(item => item.category === chosencategory)
+        : this.state.products;
     this.setState({ products: filtered });
     this.handleSelected(1);
   }
@@ -66,14 +79,20 @@ class Home extends Component {
         <div className="col-md-4 col-12 justify-content-center">
           {!this.state.isMobile && (
             <LeftMenu
-              categories={[...new Set(Products.map(element => element.category))]}
+              categories={[
+                ...new Set(this.state.products.map(element => element.category))
+              ]}
               onChangeCategory={event => this.changeCategory(event)}
-            />)}
-            {this.state.isMobile && (
+            />
+          )}
+          {this.state.isMobile && (
             <DropDownMenu
-              categories={[...new Set(Products.map(element => element.category))]}
+              categories={[
+                ...new Set(this.state.products.map(element => element.category))
+              ]}
               onChangeCategory={event => this.changeCategory(event)}
-            />)}
+            />
+          )}
         </div>
         <div className="product-list col-md-8 col-12 ">
           <PorductList

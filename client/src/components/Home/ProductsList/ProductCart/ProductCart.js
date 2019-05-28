@@ -6,7 +6,7 @@ import './ProductCart.scss';
 const ProductCart = props => (
 
   <NavLink
-    exact to={"/product/" + props.product.id}
+    exact to={"/product/" + props.product._id}
     className="card-deck">
     <div className="card">
       <img
@@ -16,7 +16,7 @@ const ProductCart = props => (
       />
       <div className="card-body">
         <h5 className="card-title">{props.product.name}</h5>
-        <p className="card-text">{props.product.description}</p>
+        <p className="card-text">{props.product.shortDescription}</p>
         <div className="d-flex align-items-center justify-content-around">
           <p className="price ">{props.product.price.toLocaleString('pl-PL', { minimumFractionDigits: 2 })} zł</p>
           <p><button className="btn btn-primary btn-sm">Do koszyka</button></p>

@@ -29,7 +29,7 @@ export class Product extends Component {
                 <div className="col-md-8 col-12">
                     <h1>{this.state.product.name}</h1>
                     <p className="price ">{this.state.product.price.toLocaleString('pl-PL', { minimumFractionDigits: 2 })} zł</p>
-                    <p>{this.state.product.text}</p>
+                    <p>{this.state.product.description}</p>
                     <p><button className="btn btn-primary">Do koszyka</button></p>
                 </div>
             </div>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
 
 // Import bootstrap styles
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,14 +21,16 @@ library.add(faShoppingBag);
 export default class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <Layout>
-          <Switch>
-            <Route exact path={'/'} component={Home} />
-            <Route exact path={'/product/:id'} component={Product} />
-          </Switch>
-        </Layout>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Layout>
+            <Switch>
+              <Route exact path={'/'} component={Home} />
+              <Route exact path={'/product/:id'} component={Product} />
+            </Switch>
+          </Layout>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }

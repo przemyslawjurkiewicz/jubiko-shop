@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PaginationComponent from 'react-reactstrap-pagination';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { getProducts } from '../../actions/productsActions';
+
+//import axios from 'axios';
 //Import styles
 import './Home.scss';
 
@@ -16,20 +19,22 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [],
       isMobile: false,
       width: window.innerWidth,
       currentPage: 1,
       currentProducts: [0, 6]
     };
     this.pageSize = 6;
-    this.pagesCount = Math.ceil(this.products / this.pageSize);
+    this.pagesCount = Math.ceil(this.props.products / this.pageSize);
   }
 
   componentWillMount() {
     this.handleWindowSizeChange();
-    this.axiosProducts();
     window.addEventListener('resize', this.handleWindowSizeChange);
+  }
+
+  componentDidMount() {
+    this.props.getProducts();
   }
 
   componentWillUnmount() {
@@ -41,18 +46,6 @@ class Home extends Component {
     this.setState({ isMobile: this.state.width <= 767 });
   };
 
-  axiosProducts() {
-    axios
-      .get('/api/products')
-      .then(response => {
-        this.setState({ products: response.data.products });
-        console.log(this.state.products);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
   handleSelected(index) {
     let from = (index - 1) * this.pageSize;
     let to = from + this.pageSize;
@@ -60,27 +53,27 @@ class Home extends Component {
       currentPage: index,
       currentProducts: [from, to]
     });
-    console.log(this.state.currentPage);
   }
 
   changeCategory(event) {
     const chosencategory = event.target.dataset.order;
     const filtered =
       chosencategory !== 'All'
-        ? this.state.products.filter(item => item.category === chosencategory)
-        : this.state.products;
+        ? this.props.products.filter(item => item.category === chosencategory)
+        : this.props.products;
     this.setState({ products: filtered });
     this.handleSelected(1);
   }
 
   render() {
+    console.log(this.props.products);
     return (
       <div className="home d-flex flex-md-row flex-column">
         <div className="col-md-4 col-12 justify-content-center">
           {!this.state.isMobile && (
             <LeftMenu
               categories={[
-                ...new Set(this.state.products.map(element => element.category))
+                ...new Set(this.props.products.map(element => element.category))
               ]}
               onChangeCategory={event => this.changeCategory(event)}
             />
@@ -88,7 +81,7 @@ class Home extends Component {
           {this.state.isMobile && (
             <DropDownMenu
               categories={[
-                ...new Set(this.state.products.map(element => element.category))
+                ...new Set(this.props.products.map(element => element.category))
               ]}
               onChangeCategory={event => this.changeCategory(event)}
             />
@@ -96,15 +89,15 @@ class Home extends Component {
         </div>
         <div className="product-list col-md-8 col-12 ">
           <PorductList
-            products={this.state.products.slice(
+            products={this.props.products.slice(
               this.state.currentProducts[0],
               this.state.currentProducts[1]
             )}
           />
           <div className="w-100 d-flex justify-content-center mt-auto">
-            {this.state.products.length > this.pageSize && (
+            {this.props.products.length > this.pageSize && (
               <PaginationComponent
-                totalItems={this.state.products.length}
+                totalItems={this.props.products.length}
                 pageSize={this.pageSize}
                 onSelect={this.handleSelected.bind(this)}
                 activePage={this.state.currentPage}
@@ -117,4 +110,8 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => ({
+  products: state.products
+});
+
+export default connect(mapStateToProps, {getProducts})(Home);

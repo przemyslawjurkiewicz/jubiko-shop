@@ -6,7 +6,7 @@ import './ProductCart.scss';
 const ProductCart = props => (
 
   <NavLink
-    exact to={"/product/" + props.product._id}
+    exact to={"/product/"+ props.product._id}
     className="card-deck">
     <div className="card">
       <img

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PaginationComponent from 'react-reactstrap-pagination';
 import { connect } from 'react-redux';
-import { getProducts } from '../../actions/productsActions';
+import {
+  getAllProducts,
+  onChangeCategory
+} from '../../actions/productsActions';
+//import { addToCart } from '../../actions/cartActions';
 
-//import axios from 'axios';
 //Import styles
 import './Home.scss';
-
-// Import products
-//import Products from '../../assets/Products';
 
 // Import components
 import PorductList from './ProductsList/ProductList';
@@ -31,10 +31,7 @@ class Home extends Component {
   componentWillMount() {
     this.handleWindowSizeChange();
     window.addEventListener('resize', this.handleWindowSizeChange);
-  }
-
-  componentDidMount() {
-    this.props.getProducts();
+    this.props.getAllProducts();
   }
 
   componentWillUnmount() {
@@ -55,44 +52,54 @@ class Home extends Component {
     });
   }
 
-  changeCategory(event) {
+  onChangeCategory(event) {
     const chosencategory = event.target.dataset.order;
-    const filtered =
-      chosencategory !== 'All'
-        ? this.props.products.filter(item => item.category === chosencategory)
-        : this.props.products;
-    this.setState({ products: filtered });
-    this.handleSelected(1);
+     this.props.onChangeCategory(this.props.allProducts, chosencategory);
+     console.log(chosencategory);
+   }
+
+  onAddToCartClic(product) {
+    this.props.addToCart(product);
   }
 
   render() {
-    console.log(this.props.products);
+    console.log(this.props.allProducts);
     return (
       <div className="home d-flex flex-md-row flex-column">
         <div className="col-md-4 col-12 justify-content-center">
           {!this.state.isMobile && (
             <LeftMenu
               categories={[
-                ...new Set(this.props.products.map(element => element.category))
+                ...new Set(
+                  this.props.allProducts.map(element => element.category)
+                )
               ]}
-              onChangeCategory={event => this.changeCategory(event)}
+              onChangeCategory={event => this.onChangeCategory(event)}
             />
           )}
           {this.state.isMobile && (
             <DropDownMenu
               categories={[
-                ...new Set(this.props.products.map(element => element.category))
+                ...new Set(
+                  this.props.allProducts.map(element => element.category)
+                )
               ]}
-              onChangeCategory={event => this.changeCategory(event)}
+              onChangeCategory={event => this.onChangeCategory(event)}
             />
           )}
         </div>
         <div className="product-list col-md-8 col-12 ">
+          {this.props.loading && (
+            <div className="d-flex justify-content-center align-items-center">
+              <p>Loading</p>
+            </div>
+          )}
           <PorductList
             products={this.props.products.slice(
               this.state.currentProducts[0],
               this.state.currentProducts[1]
             )}
+            // onAddToCartClic={product => this.onAddToCartClic(product)}
           />
           <div className="w-100 d-flex justify-content-center mt-auto">
             {this.props.products.length > this.pageSize && (
@@ -111,7 +118,18 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.products
+  products: state.products.products,
+  loading: state.products.loading,
+  allProducts: state.products.allProducts
 });
 
-export default connect(mapStateToProps, {getProducts})(Home);
+const mapDispatchToProps = {
+  getAllProducts,
+  onChangeCategory
+  // addToCart
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);

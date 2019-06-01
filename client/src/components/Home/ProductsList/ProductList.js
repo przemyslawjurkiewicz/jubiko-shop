@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 // Import components
 import PorductCart from './ProductCart/ProductCart';
 

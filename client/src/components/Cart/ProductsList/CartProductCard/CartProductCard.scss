@@ -1,0 +1,53 @@
+@import '../../../../assets/sasss/variables';
+
+.product-list {
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    &:link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    &:visited {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    &:active {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}
+
+.cart-card {
+  .price {
+    color: $brand-color;
+    font-size: $big-font-size;
+    font-weight: bold;
+  }
+
+  .card-text{
+    max-width: 400px;
+  }
+
+  p {
+    margin: auto 5px;
+  }
+
+  .btn-primary {
+    background-color: $brand-color;
+    border-color: $brand-color;
+
+    &:hover {
+      color: $brand-color;
+      background-color: #fff;
+    }
+  }
+}

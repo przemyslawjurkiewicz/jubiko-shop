@@ -14,6 +14,7 @@ import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import Layout from './Layout/Layout';
 import Home from './Home/Home';
 import Product from './Product/Product';
+import Cart from './Cart/Cart';
 
 // Icons Liblary
 library.add(faShoppingBag);
@@ -27,6 +28,7 @@ export default class App extends Component {
             <Switch>
               <Route exact path={'/'} component={Home} />
               <Route exact path={'/product/:id'} component={Product} />
+              <Route exact path={'/koszyk'} component={Cart} />
             </Switch>
           </Layout>
         </BrowserRouter>

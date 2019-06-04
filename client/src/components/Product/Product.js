@@ -13,6 +13,7 @@ export class Product extends Component {
 
   onAddToCartClic(product) {
     this.props.addToCart(product);
+    //localStorage.setItem('addedToCart',JSON.stringify(this.props.addedToCart))
     console.log(this.props.addedToCart);
   }
 

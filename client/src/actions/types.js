@@ -3,3 +3,6 @@ export const GET_PRODUCT = "GET_PRODUCT";
 export const IS_LOADING = "IS_LOADING";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const CHANGE_CATEGORY = "CHANGE_CATEGORY"
+export const QUANTITY_REMOVE = "QUANTITY_REMOVE"
+export const QUANTITY_ADD = "QUANTITY_ADD"
+export const CARD_REMOVE = "CARD_REMOVE"

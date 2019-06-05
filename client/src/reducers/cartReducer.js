@@ -44,17 +44,22 @@ export default function(state = initialState, action) {
     case QUANTITY_REMOVE:
       const removedQuantity = state.addedToCart.map(p => {
         return p._id === action.product
-          ? Object.assign({}, p, { quantity: p.quantity - 1 })
+          ? Object.assign({}, p, {
+              quantity: p.quantity > 0 ? p.quantity - 1 : 0
+            })
           : p;
       });
+      const removedQuantityMatchZero = removedQuantity.filter(
+        p => p.quantity !== 0
+      );
       return Object.assign({}, state, {
-        addedToCart: removedQuantity
+        addedToCart: removedQuantityMatchZero
       });
 
     case CARD_REMOVE:
       console.log(state.addedToCart);
       return {
-        addedToCart: state.addedToCart.filter(p => p._id !== action._id)
+        addedToCart: state.addedToCart.filter(p => p._id !== action.product)
       };
 
     default:

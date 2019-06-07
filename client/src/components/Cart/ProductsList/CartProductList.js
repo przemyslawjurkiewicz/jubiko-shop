@@ -12,9 +12,9 @@ const CartProductList = props => (
             <li key={i} className="list-group-item">
               <CartProductCard
                 product={product}
-                onQuantityAdd={()=>props.onQuantityAdd(product._id)}
-                onQuantityRemove={()=>props.onQuantityRemove(product._id)}
-                onCartRemove={()=>props.onCartRemove(product._id)}
+                onQuantityAdd={() => props.onQuantityAdd(product._id)}
+                onQuantityRemove={() => props.onQuantityRemove(product._id)}
+                onCartRemove={() => props.onCartRemove(product._id)}
               />
             </li>
           );

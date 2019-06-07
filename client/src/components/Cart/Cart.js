@@ -11,6 +11,13 @@ import {
 import './Cart.scss';
 
 export class Cart extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      summary: 0
+    };
+  }
+
   onQuantityRemove(product) {
     this.props.onQuantityRemove(product);
   }
@@ -18,29 +25,31 @@ export class Cart extends Component {
   onQuantityAdd(product) {
     this.props.onQuantityAdd(product);
   }
-  
+
   onCartRemove(product) {
     this.props.onCartRemove(product);
   }
 
   render() {
-    console.log(this.props.addedToCart);
+    console.log(this.props.summary);
     return (
       <div className="cart d-flex flex-nowrap flex-column align-items-center justify-content-center">
-        <h2 className="align-self-start">Twój koszyk:</h2>
+        <h4 className="align-self-start">Twój koszyk:</h4>
         <CartProductList
           products={this.props.addedToCart}
           onQuantityAdd={this.onQuantityAdd.bind(this)}
           onQuantityRemove={this.onQuantityRemove.bind(this)}
           onCartRemove={this.onCartRemove.bind(this)}
         />
+        <p className="summary align-self-end">Razem: {this.props.summary.toLocaleString('pl-PL', { minimumFractionDigits: 2})}{' '} zł </p>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  addedToCart: state.cart.addedToCart
+  addedToCart: state.cart.addedToCart,
+  summary: state.cart.summary
 });
 
 const mapDispatchToProps = {

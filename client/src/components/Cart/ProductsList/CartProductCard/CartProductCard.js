@@ -16,15 +16,37 @@ const CartProductCard = props => (
         <h5 className="card-title">{props.product.name}</h5>
         <p className="card-text">{props.product.shortDescription}</p>
       </div>
-      <p className="price">{props.product.price.toLocaleString('pl-PL', { minimumFractionDigits: 2})}{' '} zł </p>
+      <p className="price">
+        {props.product.price.toLocaleString('pl-PL', {
+          minimumFractionDigits: 2
+        })}{' '}
+        zł{' '}
+      </p>
       <div className="card-quantity d-flex flex-row justify-content-center align-items-center">
-        <button type="button" className="btn btn-sm btn-secondary" onClick={props.onQuantityAdd}>+</button>
+        <button
+          type="button"
+          className="btn btn-sm btn-secondary"
+          onClick={props.onQuantityAdd}
+        >
+          +
+        </button>
         <p>Ilość: {props.product.quantity}</p>
-        <button type="button" className="btn btn-sm btn-secondary" onClick={props.onQuantityRemove}>-</button>
+        <button
+          type="button"
+          className="btn btn-sm btn-secondary"
+          onClick={props.onQuantityRemove}
+        >
+          -
+        </button>
       </div>
-      <button type="button" className="btn btn-sm btn-secondary" onClick={props.onCartRemove}>Usuń</button>
-      
-      </div>
+      <button
+        type="button"
+        className="btn btn-sm btn-secondary"
+        onClick={props.onCartRemove}
+      >
+        Usuń
+      </button>
+    </div>
   </div>
 );
 

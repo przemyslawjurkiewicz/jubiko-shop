@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './ProductCart.scss';
+import './ProductCard.scss';
 
 
 const ProductCart = props => (
@@ -19,7 +19,7 @@ const ProductCart = props => (
         <p className="card-text">{props.product.shortDescription}</p>
         <div className="d-flex align-items-center justify-content-around">
           <p className="price ">{props.product.price.toLocaleString('pl-PL', { minimumFractionDigits: 2 })} zł</p>
-          <p><button className="btn btn-primary btn-sm">Do koszyka</button></p>
+          <p><button className="btn btn-primary btn-sm" onClick={event=>props.onAddToCartClic(event)}>Do koszyka</button></p>
         </div>
       </div>
     </div>

@@ -28,7 +28,10 @@ export default function(state = initialState, action) {
         .map(e => formated[e]);
 
       return Object.assign({}, state, {
-        addedToCart: added
+        addedToCart: added,
+        summary: added.reduce((a, { price, quantity }) => {
+          return a + Number(price) * quantity;
+        }, 0)
       });
 
     case QUANTITY_ADD:
@@ -38,7 +41,10 @@ export default function(state = initialState, action) {
           : p;
       });
       return Object.assign({}, state, {
-        addedToCart: addedQuantity
+        addedToCart: addedQuantity,
+        summary: addedQuantity.reduce((a, { price, quantity }) => {
+          return a + Number(price) * quantity;
+        }, 0)
       });
 
     case QUANTITY_REMOVE:
@@ -53,13 +59,19 @@ export default function(state = initialState, action) {
         p => p.quantity !== 0
       );
       return Object.assign({}, state, {
-        addedToCart: removedQuantityMatchZero
+        addedToCart: removedQuantityMatchZero,
+        summary: removedQuantityMatchZero.reduce((a, { price, quantity }) => {
+          return a + Number(price) * quantity;
+        }, 0)
       });
 
     case CARD_REMOVE:
-      console.log(state.addedToCart);
+      const notRemovedFromCart = state.addedToCart.filter(p => p._id !== action.product)
       return {
-        addedToCart: state.addedToCart.filter(p => p._id !== action.product)
+        addedToCart: notRemovedFromCart,
+        summary: notRemovedFromCart.reduce((a, { price, quantity }) => {
+          return a + Number(price) * quantity;
+        }, 0)
       };
 
     default:

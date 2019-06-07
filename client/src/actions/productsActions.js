@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_PRODUCTS, GET_PRODUCT, IS_LOADING, CHANGE_CATEGORY } from './types';
+import { GET_PRODUCTS, GET_PRODUCT, IS_LOADING, CHANGE_CATEGORY, SORT_PRODUCTS } from './types';
 
 export function getAllProducts() {
   return dispatch => {
@@ -58,5 +58,12 @@ export const onChangeCategory = (products, category)=> {
     type: CHANGE_CATEGORY,
     category,
     products
+  };
+};
+
+export const onChangeSort = (event)=> {
+  return {
+    type: SORT_PRODUCTS,
+    event
   };
 };

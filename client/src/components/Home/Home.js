@@ -3,9 +3,11 @@ import PaginationComponent from 'react-reactstrap-pagination';
 import { connect } from 'react-redux';
 import {
   getAllProducts,
-  onChangeCategory
+  onChangeCategory,
+  onChangeSort
 } from '../../actions/productsActions';
-//import { addToCart } from '../../actions/cartActions';
+import { addToCart } from '../../actions/cartActions';
+import loader from '../../assets/images/oval.svg';
 
 //Import styles
 import './Home.scss';
@@ -14,6 +16,7 @@ import './Home.scss';
 import PorductList from './ProductsList/ProductList';
 import LeftMenu from './LeftMenu/LeftMenu';
 import DropDownMenu from './DropDownMenu/DropDownMenu';
+import TopMenu from './TopMenu/TopMenu';
 
 class Home extends Component {
   constructor(props) {
@@ -54,12 +57,18 @@ class Home extends Component {
 
   onChangeCategory(event) {
     const chosencategory = event.target.dataset.order;
-     this.props.onChangeCategory(this.props.allProducts, chosencategory);
-     console.log(chosencategory);
-   }
+    this.props.onChangeCategory(this.props.allProducts, chosencategory);
+  }
 
-  onAddToCartClic(product) {
+  onAddToCartClic(product, event) {
+    event.preventDefault();
+    event.stopPropagation();
     this.props.addToCart(product);
+  }
+
+  onChangeSort(event) {
+    this.props.onChangeSort(event);
+    console.log(event);
   }
 
   render() {
@@ -91,22 +100,23 @@ class Home extends Component {
         <div className="product-list col-md-8 col-12 ">
           {this.props.loading && (
             <div className="d-flex justify-content-center align-items-center">
-              <p>Loading</p>
+              <img src={loader} />
             </div>
           )}
+          <TopMenu onChangeSort={event => this.onChangeSort(event)} />
           <PorductList
             products={this.props.products.slice(
               this.state.currentProducts[0],
               this.state.currentProducts[1]
             )}
-            // onAddToCartClic={product => this.onAddToCartClic(product)}
+            onAddToCartClic={(product, event) => this.onAddToCartClic(product, event)}
           />
           <div className="w-100 d-flex justify-content-center mt-auto">
             {this.props.products.length > this.pageSize && (
               <PaginationComponent
                 totalItems={this.props.products.length}
                 pageSize={this.pageSize}
-                onSelect={this.handleSelected.bind(this)}
+                onSelect={(product, e) => this.handleSelected(product, e)}
                 activePage={this.state.currentPage}
               />
             )}
@@ -121,12 +131,14 @@ const mapStateToProps = state => ({
   products: state.products.products,
   loading: state.products.loading,
   allProducts: state.products.allProducts
+  // addedToCart: state.cart.addedToCart,
 });
 
 const mapDispatchToProps = {
   getAllProducts,
-  onChangeCategory
-  // addToCart
+  onChangeCategory,
+  addToCart,
+  onChangeSort
 };
 
 export default connect(

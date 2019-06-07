@@ -7,7 +7,6 @@ import './Header.scss'
 
 // Import logo
 import logo from '../../../assets/images/logo.jpg'
-console.log(logo);
 
 class Header extends Component {
     constructor(props) {

@@ -2,7 +2,8 @@ import {
   GET_PRODUCTS,
   GET_PRODUCT,
   IS_LOADING,
-  CHANGE_CATEGORY
+  CHANGE_CATEGORY,
+  SORT_PRODUCTS
 } from '../actions/types';
 
 const initialState = {
@@ -20,9 +21,8 @@ export default function(state = initialState, action) {
         products: action.products,
         allProducts: action.products
       };
-    //return Object.assign({}, state, { products: action.products });
+
     case GET_PRODUCT:
-      // return Object.assign({}, state, { selectedProduct: action.product });
       return { ...state, selectedProduct: action.product };
 
     case IS_LOADING:
@@ -38,6 +38,39 @@ export default function(state = initialState, action) {
               )
             : state.allProducts
       };
+
+    case SORT_PRODUCTS:
+      const key = action.event.target.dataset.prop;
+      const direction = action.event.target.dataset.order;
+      const sortedByPrice = state.products
+        .concat()
+        .sort((a, b) =>
+          direction === 'asc'
+            ? parseFloat(a[key]) - parseFloat(b[key])
+            : parseFloat(b[key]) - parseFloat(a[key])
+        );
+      const sortedByName = state.products
+        .concat()
+        .sort(
+          direction === 'asc'
+            ? (a, b) =>
+                a[key].toUpperCase() > b[key].toUpperCase()
+                  ? 1
+                  : b[key].toUpperCase() > a[key].toUpperCase()
+                  ? -1
+                  : 0
+            : (a, b) =>
+                a[key].toUpperCase() > b[key].toUpperCase()
+                  ? -1
+                  : b[key].toUpperCase() > a[key].toUpperCase()
+                  ? 1
+                  : 0
+        );
+      return {
+        ...state,
+        products: key === 'name' ? sortedByName : sortedByPrice
+      };
+
     default:
       return state;
   }

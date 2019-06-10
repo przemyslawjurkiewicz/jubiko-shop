@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { connect } from 'react-redux';
 // Import styles
 import './Header.scss'
 
@@ -63,7 +63,11 @@ class Header extends Component {
                                     <NavLink to="/kontakt" activeClassName="active" className="nav-link" onClick={this.calopseChange} exact={true}>Kontakt</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink to="/koszyk" activeClassName="active" className="nav-link" onClick={this.calopseChange} exact={true} ><i><FontAwesomeIcon icon="shopping-bag" /></i></NavLink>
+                                    <NavLink to="/koszyk" activeClassName="active" className="nav-link cart-icon" onClick={this.calopseChange} exact={true} ><i className="cart-icon"><FontAwesomeIcon icon="shopping-bag" />
+                                    <p className="cart-items">{this.props.addedToCart.reduce((a, { quantity }) => {
+                                        return a + quantity;
+                                    }, 0)}</p>
+                                    </i></NavLink>
                                 </li>
                             </ul>
                         </div>
@@ -74,4 +78,7 @@ class Header extends Component {
     }
 }
 
-export default Header;
+const mapStateToProps = state => ({
+    addedToCart: state.cart.addedToCart,
+});
+export default connect(mapStateToProps)(Header);

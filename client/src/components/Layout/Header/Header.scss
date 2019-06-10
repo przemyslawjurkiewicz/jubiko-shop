@@ -1,4 +1,5 @@
 @import '../../../assets/sasss/variables';
+
 .header {
   a {
     color: $dark-grey;
@@ -6,13 +7,14 @@
     .nav-link {
       color: $dark-grey;
     }
+
     &:hover {
       color: $grey;
     }
   }
 
   .nav-pills .nav-link.active,
-  .nav-pills .show > .nav-link {
+  .nav-pills .show>.nav-link {
     background-color: $brand-color;
   }
 
@@ -28,5 +30,26 @@
     z-index: 10;
     width: 100vw;
     height: 100vh;
+  }
+
+  .cart-icon {
+    position: relative;
+  }
+
+  .cart-items {
+    font-size: $small-font-size;
+    font-style: normal;
+    font-weight: bold;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    color: $brand-color;
+    background-color: $light;
+    border-radius: 50%;
+    position: absolute;
+    top: 16px;
+    left: 10px;
+    padding: 0;
+    margin: 0;
   }
 }

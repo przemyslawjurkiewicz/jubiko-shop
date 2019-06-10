@@ -58,6 +58,7 @@ class Home extends Component {
   onChangeCategory(event) {
     const chosencategory = event.target.dataset.order;
     this.props.onChangeCategory(this.props.allProducts, chosencategory);
+    this.handleSelected(1)
   }
 
   onAddToCartClic(product, event) {
@@ -68,7 +69,6 @@ class Home extends Component {
 
   onChangeSort(event) {
     this.props.onChangeSort(event);
-    console.log(event);
   }
 
   render() {
@@ -103,24 +103,30 @@ class Home extends Component {
               <img src={loader} />
             </div>
           )}
-          <TopMenu onChangeSort={event => this.onChangeSort(event)} />
-          <PorductList
-            products={this.props.products.slice(
-              this.state.currentProducts[0],
-              this.state.currentProducts[1]
-            )}
-            onAddToCartClic={(product, event) => this.onAddToCartClic(product, event)}
-          />
-          <div className="w-100 d-flex justify-content-center mt-auto">
-            {this.props.products.length > this.pageSize && (
-              <PaginationComponent
-                totalItems={this.props.products.length}
-                pageSize={this.pageSize}
-                onSelect={(product, e) => this.handleSelected(product, e)}
-                activePage={this.state.currentPage}
+          {!this.props.loading && (
+            <div>
+              <TopMenu onChangeSort={event => this.onChangeSort(event)} />
+              <PorductList
+                products={this.props.products.slice(
+                  this.state.currentProducts[0],
+                  this.state.currentProducts[1]
+                )}
+                onAddToCartClic={(product, event) =>
+                  this.onAddToCartClic(product, event)
+                }
               />
-            )}
-          </div>
+              <div className="w-100 d-flex justify-content-center mt-auto">
+                {this.props.products.length > this.pageSize && (
+                  <PaginationComponent
+                    totalItems={this.props.products.length}
+                    pageSize={this.pageSize}
+                    onSelect={(product, e) => this.handleSelected(product, e)}
+                    activePage={this.state.currentPage}
+                  />
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -131,7 +137,6 @@ const mapStateToProps = state => ({
   products: state.products.products,
   loading: state.products.loading,
   allProducts: state.products.allProducts
-  // addedToCart: state.cart.addedToCart,
 });
 
 const mapDispatchToProps = {

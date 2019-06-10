@@ -1,0 +1,25 @@
+.list-fade-enter{
+    opacity: 0;
+}
+
+.list-fade-enter.list-fade-enter-active {
+    opacity: 1;
+    transition: opacity 1000ms ease;
+    -webkit-transition: opacity 1000ms ease;
+    -moz-transition: opacity 1000ms ease;
+    -ms-transition: opacity 1000ms ease;
+    -o-transition: opacity 1000ms ease;
+}
+
+.list-fade-appear{
+    opacity: 0;
+}
+
+.list-fade-appear.list-fade-appear-active {
+    opacity: 1;
+    transition: opacity 2000ms ease;
+    -webkit-transition: opacity 2000ms ease;
+    -moz-transition: opacity 2000ms ease;
+    -ms-transition: opacity 2000ms ease;
+    -o-transition: opacity 2000ms ease;
+}

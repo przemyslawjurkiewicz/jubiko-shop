@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getProductId } from '../../actions/productsActions';
 import { addToCart } from '../../actions/cartActions';
 import loader from '../../assets/images/oval.svg';
-
+import Fade from 'react-reveal/Fade';
 // Import style
 import './Product.scss';
 
@@ -25,7 +25,8 @@ export class Product extends Component {
           </div>
         )}
         {!this.props.loading && (
-          <div className="product d-flex flex-md-row flex-nowrap flex-column align-items-center justify-content-center">
+         <Fade>
+         <div className="product d-flex flex-md-row flex-nowrap flex-column align-items-center justify-content-center">
             <img
               className="col-md-4 col-12 w-auto p-3"
               src={this.props.selectedProduct.imgSrc}
@@ -47,6 +48,7 @@ export class Product extends Component {
               </p>
             </div>
           </div>
+          </Fade>
         )}
       </div>
     );

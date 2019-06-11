@@ -100,7 +100,7 @@ class Home extends Component {
         <div className="product-list col-md-8 col-12 ">
           {this.props.loading && (
             <div className="d-flex justify-content-center align-items-center">
-              <img src={loader} />
+              <img src={loader} alt="loader" />
             </div>
           )}
           {!this.props.loading && (

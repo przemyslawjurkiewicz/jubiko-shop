@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import './DropDownMenu.scss'
 
-import'./DropDownMenu.scss';
 
 export default class DropDownMenu extends Component {
   constructor(props) {

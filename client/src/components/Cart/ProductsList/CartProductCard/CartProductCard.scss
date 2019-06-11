@@ -1,4 +1,5 @@
 @import '../../../../assets/sasss/variables';
+@import '../../../../assets/sasss/components';
 
 .product-list {
   a {
@@ -33,7 +34,7 @@
     font-weight: bold;
   }
 
-  .card-text{
+  .card-text {
     max-width: 400px;
   }
 
@@ -41,13 +42,4 @@
     margin: auto 5px;
   }
 
-  .btn-primary {
-    background-color: $brand-color;
-    border-color: $brand-color;
-
-    &:hover {
-      color: $brand-color;
-      background-color: #fff;
-    }
-  }
 }

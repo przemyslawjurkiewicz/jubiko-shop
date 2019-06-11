@@ -21,7 +21,7 @@ export class Product extends Component {
       <div>
         {this.props.loading && (
           <div className="product d-flex align-items-center justify-content-center">
-            <img src={loader} />
+            <img src={loader} alt="loader"/>
           </div>
         )}
         {!this.props.loading && (

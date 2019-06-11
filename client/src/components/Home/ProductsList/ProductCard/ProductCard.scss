@@ -1,12 +1,15 @@
 @import '../../../../assets/sasss/variables';
+@import '../../../../assets/sasss/components';
 
 .product-list {
   a {
     text-decoration: none;
+
     &:hover {
       text-decoration: none;
       color: inherit;
     }
+
     &:link {
       text-decoration: none;
       color: inherit;
@@ -31,14 +34,7 @@
     }
 
     .btn-primary {
-      background-color: $brand-color;
-      border-color: $brand-color;
       z-index: 10;
-
-      &:hover {
-        color: $brand-color;
-        background-color: #fff;
-      }
     }
   }
 }

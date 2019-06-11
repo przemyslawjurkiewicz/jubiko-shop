@@ -1,0 +1,11 @@
+//buttons
+
+.btn-primary {
+  background-color: $brand-color;
+  border-color: $brand-color;
+
+  &:hover {
+    color: $brand-color;
+    background-color: #fff;
+  }
+}

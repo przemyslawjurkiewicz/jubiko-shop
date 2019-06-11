@@ -2,14 +2,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
+const passport = require('passport');
 
 const app = express();
 const products = require('./api/products');
+const users = require('./api/users');
 
 // Bodyparser middleware
 app.use(
   bodyParser.urlencoded({
-   extended: false
+    extended: false
   })
 );
 
@@ -23,13 +25,20 @@ mongoose
   .then(() => console.log('MongoDB successfully connected :)'))
   .catch(err => console.log(err));
 
-  // Routes
+// Passport middleware
+app.use(passport.initialize());
+
+// Passport config
+require('./config/passport')(passport);
+
+// Routes
+app.use('/api/users', users);
 app.use('/api/products', products);
 
 // Serv static assets if in production
-if (process.env.NODE_ENV === 'production'){
+if (process.env.NODE_ENV === 'production') {
   //Set static folder
-  app.use(express.static(path.join(__dirname, "client", "build")))
+  app.use(express.static(path.join(__dirname, 'client', 'build')));
 
   app.get('*', (reg, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));

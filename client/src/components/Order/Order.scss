@@ -1,0 +1,26 @@
+@import '../../assets/sasss/variables';
+@import'../../assets/sasss/components';
+
+.order {
+  h4 {
+    padding: 10px;
+    color: $brand-color;
+  }
+
+  .summary {
+    color: $brand-color;
+    font-size: $big-font-size;
+    font-weight: bold;
+  }
+
+  span {
+    color: $dark-grey;
+    font-size: $big-font-size;
+
+  }
+
+  hr {
+    width: 50%;
+    border-top: 2px solid $grey
+  }
+}

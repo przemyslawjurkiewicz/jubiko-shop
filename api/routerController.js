@@ -5,6 +5,7 @@ const keys = require('../config/keys');
 // Load User model
 const User = require('../models/User');
 const Product = require('../models/Product');
+const Order = require('../models/Order');
 
 // Load input validation
 const validateRegisterInput = require('../validation/register');
@@ -16,7 +17,7 @@ const routerController = {
       if (err) {
         res.status(500).send(err);
       }
-      res.json({ products });
+      res.json({products});
     });
   },
 
@@ -25,25 +26,25 @@ const routerController = {
       res.status(500).send('ID field is required.');
     }
 
-    Product.findOne({ _id: req.params.id }).exec((err, product) => {
+    Product.findOne({_id: req.params.id}).exec((err, product) => {
       if (err) {
         res.status(500).send(err);
       }
-      res.json({ product });
+      res.json({product});
     });
   },
 
   postRegister: (req, res) => {
     // Form validation
-    const { errors, isValid } = validateRegisterInput(req.body);
+    const {errors, isValid} = validateRegisterInput(req.body);
     // Check validation
     if (!isValid) {
       return res.status(400).json(errors);
     }
     // If the user already exists
-    User.findOne({ email: req.body.email }).then(user => {
+    User.findOne({email: req.body.email}).then(user => {
       if (user) {
-        return res.status(400).json({ email: 'Ten Email już istnieje' });
+        return res.status(400).json({email: 'Ten Email już istnieje'});
       }
       // If user is a new user, fill in the fields
       const newUser = new User({
@@ -72,21 +73,17 @@ const routerController = {
 
   postLogin: (req, res) => {
     // Form validation
-    const { errors, isValid } = validateLoginInput(req.body);
+    const {errors, isValid} = validateLoginInput(req.body);
     // Check validation
     if (!isValid) {
       return res.status(400).json(errors);
     }
     const email = req.body.email;
     const password = req.body.password;
-    //const city = req.body.city;
-    //const street= req.body.street;
-    //const zip = req.body.zip;
-    // Find user by email
-    User.findOne({ email }).then(user => {
+    User.findOne({email}).then(user => {
       // Check if user exists
       if (!user) {
-        return res.status(404).json({ emailnotfound: 'Email nie znaleziony' });
+        return res.status(404).json({emailnotfound: 'Email nie znaleziony'});
       }
       // Check password (bsryptjs)
       bcrypt.compare(password, user.password).then(isMatch => {
@@ -117,9 +114,34 @@ const routerController = {
         } else {
           return res
             .status(400)
-            .json({ passwordincorrect: 'Nieprawidłowe hasło' });
+            .json({passwordincorrect: 'Nieprawidłowe hasło'});
         }
       });
+    });
+  },
+
+  postOrder: (req, res) => {
+    const newOrder = new Order({
+      id: req.body.id,
+      userId: req.body.userId,
+      summary: req.body.summary,
+      products: req.body.products
+    });
+    newOrder
+      .save()
+      //.then(order => res.json(order))
+      .catch(err => console.log(err));
+  },
+
+  order: (req, res) => {
+    if (!req.params.id) {
+      res.status(500).send('ID field is required.');
+    }
+    Order.find({userId: req.params.id}).exec((err, orders) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+      res.json([orders]);
     });
   }
 };

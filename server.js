@@ -7,7 +7,7 @@ const passport = require('passport');
 const app = express();
 const products = require('./api/products');
 const users = require('./api/users');
-
+const orders = require('./api/orders');
 // Bodyparser middleware
 app.use(
   bodyParser.urlencoded({
@@ -32,6 +32,7 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 // Routes
+app.use('/api/orders', orders);
 app.use('/api/users', users);
 app.use('/api/products', products);
 

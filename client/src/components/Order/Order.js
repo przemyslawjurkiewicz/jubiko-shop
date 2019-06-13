@@ -3,15 +3,36 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 // Import style
 import './Order.scss';
+import {
+ addOrder
+} from '../../actions/orderActions';
+import uuid from 'uuid';
 
 export class Order extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      id: uuid(),
+     // userId:'',
+     // summary:'',
+     // products:[]
+    };
   }
+
+  onConfirmCliced() {
+    const newOrder = {
+      id: this.state.id,
+      userId: this.props.auth.user.id,
+      summary: this.props.summary,
+      products: this.props.addedToCart
+    };
+
+    this.props.addOrder(newOrder, this.props.history);
+  }
+
   render() {
     const {user} = this.props.auth;
-    console.log(user);
+    console.log(this.props.addedToCart);
     return (
       <div className='order col-sm-12 d-flex flex-nowrap flex-column align-items-center justify-content-center'>
         <h4>Twóje zamówienie:</h4>
@@ -42,7 +63,9 @@ export class Order extends Component {
               </span>
             </p>
             <br />
-            <p className='summary'>Dziękujemy.</p>
+            <button className='btn btn-primary' onClick={() => this.onConfirmCliced()}>
+            ZAMAWIAM Z OBOWĄZKIEM ZAPŁATY
+          </button>
           </div>
         )}
 
@@ -72,4 +95,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps)(Order);
+export default connect(mapStateToProps,{addOrder})(Order);

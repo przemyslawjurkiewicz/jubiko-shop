@@ -5,7 +5,8 @@ import CartProductList from './ProductsList/CartProductList';
 import {
   onQuantityAdd,
   onQuantityRemove,
-  onCartRemove
+  onCartRemove,
+  onCartRemoveAll
 } from '../../actions/cartActions';
 import classnames from 'classnames';
 
@@ -31,6 +32,9 @@ export class Cart extends Component {
   onCartRemove(product) {
     this.props.onCartRemove(product);
   }
+  onCartRemoveAll() {
+    this.props.onCartRemoveAll();
+  }
 
   render() {
     console.log(this.props.summary);
@@ -50,15 +54,25 @@ export class Cart extends Component {
           })}
           zł
         </p>
-        <NavLink to='/zamowienie' className='align-self-end' exact={true}>
+        <div className='d-flex flex-row justify-content-around align-self-end'>
           <button
-            className={classnames('btn btn-primary', {
+            onClick={() => this.onCartRemoveAll()}
+            className={classnames('btn btn-secondary btn-sm m-2', {
               'd-none': this.props.summary === 0
             })}
           >
-            ZAMÓW
+            WYCZYŚĆ KOSZYK
           </button>
-        </NavLink>
+          <NavLink to='/zamowienie' exact={true}>
+            <button
+              className={classnames('btn btn-primary m-2', {
+                'd-none': this.props.summary === 0
+              })}
+            >
+              ZAMÓW
+            </button>
+          </NavLink>
+        </div>
       </div>
     );
   }
@@ -72,7 +86,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   onQuantityAdd,
   onQuantityRemove,
-  onCartRemove
+  onCartRemove,
+  onCartRemoveAll
 };
 
 export default connect(

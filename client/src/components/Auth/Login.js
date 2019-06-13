@@ -11,9 +11,6 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      city: '',
-      street: '',
-      zip: '',
       errors: {}
     };
   }
@@ -45,12 +42,8 @@ class Login extends Component {
     const userData = {
       email: this.state.email,
       password: this.state.password,
-      city: this.state.city,
-      street: this.state.street,
-      zip: this.state.zip
     };
     this.props.loginUser(userData);
-    console.log(userData);
   };
 
   render() {

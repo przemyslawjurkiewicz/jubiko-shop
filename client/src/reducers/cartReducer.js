@@ -2,7 +2,8 @@ import {
   ADD_TO_CART,
   CARD_REMOVE,
   QUANTITY_ADD,
-  QUANTITY_REMOVE
+  QUANTITY_REMOVE,
+  CARD_REMOVE_ALL
 } from '../actions/types';
 
 const initialState = {
@@ -16,7 +17,7 @@ export default function(state = initialState, action) {
       const add = [...state.addedToCart, action.product];
       const formated = add.map(p => {
         return p._id === action.product._id
-          ? Object.assign({}, p, { quantity: p.quantity + 1 })
+          ? Object.assign({}, p, {quantity: p.quantity + 1})
           : p;
       });
       const added = formated
@@ -29,7 +30,7 @@ export default function(state = initialState, action) {
 
       return Object.assign({}, state, {
         addedToCart: added,
-        summary: added.reduce((a, { price, quantity }) => {
+        summary: added.reduce((a, {price, quantity}) => {
           return a + Number(price) * quantity;
         }, 0)
       });
@@ -37,12 +38,12 @@ export default function(state = initialState, action) {
     case QUANTITY_ADD:
       const addedQuantity = state.addedToCart.map(p => {
         return p._id === action.product
-          ? Object.assign({}, p, { quantity: p.quantity + 1 })
+          ? Object.assign({}, p, {quantity: p.quantity + 1})
           : p;
       });
       return Object.assign({}, state, {
         addedToCart: addedQuantity,
-        summary: addedQuantity.reduce((a, { price, quantity }) => {
+        summary: addedQuantity.reduce((a, {price, quantity}) => {
           return a + Number(price) * quantity;
         }, 0)
       });
@@ -60,18 +61,26 @@ export default function(state = initialState, action) {
       );
       return Object.assign({}, state, {
         addedToCart: removedQuantityMatchZero,
-        summary: removedQuantityMatchZero.reduce((a, { price, quantity }) => {
+        summary: removedQuantityMatchZero.reduce((a, {price, quantity}) => {
           return a + Number(price) * quantity;
         }, 0)
       });
 
     case CARD_REMOVE:
-      const notRemovedFromCart = state.addedToCart.filter(p => p._id !== action.product)
+      const notRemovedFromCart = state.addedToCart.filter(
+        p => p._id !== action.product
+      );
       return {
         addedToCart: notRemovedFromCart,
-        summary: notRemovedFromCart.reduce((a, { price, quantity }) => {
+        summary: notRemovedFromCart.reduce((a, {price, quantity}) => {
           return a + Number(price) * quantity;
         }, 0)
+      };
+
+    case CARD_REMOVE_ALL:
+      return {
+        addedToCart: [],
+        summary: 0
       };
 
     default:

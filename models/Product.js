@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-require('mongoose-double')(mongoose);
-const SchemaTypes = mongoose.Schema.Types;
 // Create Schema
 const ProductSchema = new Schema({
   name: {
@@ -10,7 +8,7 @@ const ProductSchema = new Schema({
     unique: false
   },
   price: {
-    type: SchemaTypes.Double,
+    type: String,
     required: true,
     unique: false
   },

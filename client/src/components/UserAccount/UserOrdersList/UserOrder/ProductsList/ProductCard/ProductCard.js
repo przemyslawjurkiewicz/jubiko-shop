@@ -16,6 +16,7 @@ const CartProductCard = props => (
         <h5 className='card-title'>{props.product.name}</h5>
         <p className='card-text'>{props.product.shortDescription}</p>
       </div>
+      <p className='card-text'>Ilość:{' '}{props.product.quantity}</p>
       <p className='price'>
         {props.product.price.toLocaleString('pl-PL', {
           minimumFractionDigits: 2

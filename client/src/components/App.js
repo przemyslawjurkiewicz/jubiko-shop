@@ -22,6 +22,9 @@ import Order from './Order/Order';
 import Register from './Auth/Register';
 import Login from './Auth/Login';
 import UserAccount from './UserAccount/UserAccount';
+import Faq from './Faq/Faq';
+import Rules from './Rules/Rules';
+import Contact from './Contact/Contact'
 
 // Icons Liblary
 library.add(faShoppingBag, faUser);
@@ -59,6 +62,9 @@ export default class App extends Component {
               <Route exact path={'/register'} component={Register} />
               <Route exact path={'/login'} component={Login} />
               <Route exact path={'/konto'} component={UserAccount} />
+              <Route exact path={'/faq'} component={Faq} />
+              <Route exact path={'/regulamin'} component={Rules} />
+              <Route exact path={'/kontakt'} component={Contact} />
             </Switch>
           </Layout>
         </BrowserRouter>

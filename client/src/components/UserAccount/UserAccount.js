@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {getOrdersByUserId} from '../../actions/orderActions';
+import {logoutUser} from '../../actions/authActions';
 import loader from '../../assets/images/oval.svg';
 
 //Import styles
@@ -18,6 +19,12 @@ class UserAccount extends Component {
   componentDidMount() {
     this.props.getOrdersByUserId(this.props.auth.user.id);
   }
+
+  onLogoutClick = e => {
+    e.preventDefault();
+    this.props.logoutUser();
+    this.props.history.push('/');
+  };
 
   render() {
     const {user} = this.props.auth;
@@ -40,6 +47,12 @@ class UserAccount extends Component {
                 {user.city}
               </span>
             </p>
+            <button
+              onClick={this.onLogoutClick}
+              className='btn btn-primary m-2'
+            >
+              WYLOGUJ
+            </button>
             <br />
             <p className='summary'>Twóje zamówienia:</p>
             {this.props.loading && (
@@ -54,7 +67,7 @@ class UserAccount extends Component {
             )}
             {!this.props.loading && this.props.orders.length === 0 && (
               <div className='product d-flex align-items-center justify-content-center'>
-               <p>Brak zamówień.</p>
+                <p>Brak zamówień.</p>
               </div>
             )}
           </div>
@@ -85,7 +98,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  getOrdersByUserId
+  getOrdersByUserId,
+  logoutUser
 };
 
 export default connect(

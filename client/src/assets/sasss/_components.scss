@@ -1,11 +1,43 @@
-//buttons
-
+.btn,
 .btn-primary {
   background-color: $brand-color;
   border-color: $brand-color;
+  color: #fff;
 
   &:hover {
     color: $brand-color;
     background-color: #fff;
   }
+}
+
+.price {
+  color: $brand-color;
+  font-size: $big-font-size;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:link {
+    text-decoration: none;
+  }
+
+  &:visited {
+    text-decoration: none;
+  }
+
+  &:active {
+    text-decoration: none;
+  }
+}
+
+.summary {
+  color: $brand-color;
+  font-size: $big-font-size;
+  font-weight: bold;
 }

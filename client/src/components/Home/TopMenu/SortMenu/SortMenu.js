@@ -1,11 +1,5 @@
 import React, {Component} from 'react';
-import './SortMenu.scss';
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from 'reactstrap';
+import {Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 
 export default class SortnMenu extends Component {
   constructor(props) {
@@ -25,37 +19,37 @@ export default class SortnMenu extends Component {
 
   render() {
     return (
-      <Dropdown isOpen={this.state.dropdownOpen} size="sm" toggle={this.toggle}>
+      <Dropdown isOpen={this.state.dropdownOpen} size='sm' toggle={this.toggle}>
         <DropdownToggle caret>Wybierz</DropdownToggle>
         <DropdownMenu>
           <DropdownItem
-            className="nav-item"
+            className='nav-item'
             data-prop='name'
-            data-order="asc"
+            data-order='asc'
             onClick={this.props.onChangeSort}
           >
             Nazwa: A-Z
           </DropdownItem>
           <DropdownItem
-            className="nav-item"
+            className='nav-item'
             data-prop='name'
-            data-order="desc"
+            data-order='desc'
             onClick={this.props.onChangeSort}
           >
             Nazwa: Z-A
           </DropdownItem>
           <DropdownItem
-            className="nav-item"
-            data-prop='price' 
-            data-order='asc' 
+            className='nav-item'
+            data-prop='price'
+            data-order='asc'
             onClick={this.props.onChangeSort}
           >
             Cena: rosnąco
           </DropdownItem>
           <DropdownItem
-            className="nav-item"
-            data-prop='price' 
-            data-order='desc' 
+            className='nav-item'
+            data-prop='price'
+            data-order='desc'
             onClick={this.props.onChangeSort}
           >
             Cena: malejąco

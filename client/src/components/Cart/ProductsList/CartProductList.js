@@ -4,12 +4,12 @@ import React from 'react';
 import CartProductCard from './CartProductCard/CartProductCard';
 
 const CartProductList = props => (
-  <div className="d-flex flex-wrap justify-content-center">
-    <div className="p-2 col-12">
-      <ul className="list-group">
+  <div className='d-flex flex-wrap justify-content-center'>
+    <div className='p-2 col-12'>
+      <ul className='list-group'>
         {props.products.map((product, i) => {
           return (
-            <li key={i} className="list-group-item">
+            <li key={i} className='list-group-item'>
               <CartProductCard
                 product={product}
                 onQuantityAdd={() => props.onQuantityAdd(product._id)}

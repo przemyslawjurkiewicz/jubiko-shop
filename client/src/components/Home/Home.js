@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PaginationComponent from 'react-reactstrap-pagination';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {
   getAllProducts,
   onChangeCategory,
   onChangeSort
 } from '../../actions/productsActions';
-import { addToCart } from '../../actions/cartActions';
+import {addToCart} from '../../actions/cartActions';
 import loader from '../../assets/images/oval.svg';
 
 //Import styles
@@ -42,8 +42,8 @@ class Home extends Component {
   }
 
   handleWindowSizeChange = () => {
-    this.setState({ width: window.innerWidth });
-    this.setState({ isMobile: this.state.width <= 767 });
+    this.setState({width: window.innerWidth});
+    this.setState({isMobile: this.state.width <= 767});
   };
 
   handleSelected(index) {
@@ -58,7 +58,7 @@ class Home extends Component {
   onChangeCategory(event) {
     const chosencategory = event.target.dataset.order;
     this.props.onChangeCategory(this.props.allProducts, chosencategory);
-    this.handleSelected(1)
+    this.handleSelected(1);
   }
 
   onAddToCartClic(product, event) {
@@ -72,10 +72,9 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.props.allProducts);
     return (
-      <div className="home d-flex flex-md-row flex-column">
-        <div className="col-md-4 col-12 justify-content-center">
+      <div className='home d-flex flex-md-row flex-column'>
+        <div className='col-md-4 col-12 justify-content-center'>
           {!this.state.isMobile && (
             <LeftMenu
               categories={[
@@ -97,10 +96,10 @@ class Home extends Component {
             />
           )}
         </div>
-        <div className="product-list col-md-8 col-12 ">
+        <div className='product-list col-md-8 col-12 '>
           {this.props.loading && (
-            <div className="d-flex justify-content-center align-items-center">
-              <img src={loader} alt="loader" />
+            <div className='d-flex justify-content-center align-items-center'>
+              <img src={loader} alt='loader' />
             </div>
           )}
           {!this.props.loading && (
@@ -115,7 +114,7 @@ class Home extends Component {
                   this.onAddToCartClic(product, event)
                 }
               />
-              <div className="w-100 d-flex justify-content-center mt-auto">
+              <div className='w-100 d-flex justify-content-center mt-auto'>
                 {this.props.products.length > this.pageSize && (
                   <PaginationComponent
                     totalItems={this.props.products.length}

@@ -2,37 +2,8 @@
 @import '../../../../assets/sasss/components';
 
 .product-list {
-  a {
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    &:link {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    &:visited {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    &:active {
-      text-decoration: none;
-      color: inherit;
-    }
-  }
 
   .card-body {
-    .price {
-      color: $brand-color;
-      font-size: $big-font-size;
-      font-weight: bold;
-    }
-
     .btn-primary {
       z-index: 10;
     }

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import './DropDownMenu.scss'
-
+import {Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
+import './DropDownMenu.scss';
 
 export default class DropDownMenu extends Component {
   constructor(props) {
@@ -22,24 +21,21 @@ export default class DropDownMenu extends Component {
   render() {
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle caret>
-        Kategorie
-        </DropdownToggle>
+        <DropdownToggle caret>Kategorie</DropdownToggle>
         <DropdownMenu>
-        {this.props
-            .categories
-            .map((item, i) => {
-                return (
-                    <DropdownItem
-                        key={i}
-                        className="nav-item"
-                        data-prop="category"
-                        data-order={item}
-                        onClick={this.props.onChangeCategory}>
-                        {item}
-                    </DropdownItem>
-                );
-            })}
+          {this.props.categories.map((item, i) => {
+            return (
+              <DropdownItem
+                key={i}
+                className='nav-item'
+                data-prop='category'
+                data-order={item}
+                onClick={this.props.onChangeCategory}
+              >
+                {item}
+              </DropdownItem>
+            );
+          })}
         </DropdownMenu>
       </Dropdown>
     );

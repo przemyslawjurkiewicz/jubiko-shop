@@ -18,9 +18,7 @@ class Login extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      //this.props.history.push('/zamowienie'); // push user to order when  login
-      this.props.history.goBack();
-      //console.log(this.props.history)
+      this.props.history.goBack(); //push user back when loging
     }
     if (nextProps.errors) {
       this.setState({
@@ -44,7 +42,7 @@ class Login extends Component {
     e.preventDefault();
     const userData = {
       email: this.state.email,
-      password: this.state.password,
+      password: this.state.password
     };
     this.props.loginUser(userData);
   };

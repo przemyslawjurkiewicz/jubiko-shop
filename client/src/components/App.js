@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import React, {Component} from 'react';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {Provider} from 'react-redux';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../utils/setAuthToken';
-import { setCurrentUser, logoutUser } from '../actions/authActions';
+import {setCurrentUser, logoutUser} from '../actions/authActions';
 import store from './store';
-//import { spring, AnimatedSwitch } from 'react-router-transition';
 
 // Import bootstrap styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Import FontAwsome
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faShoppingBag, faUser } from '@fortawesome/free-solid-svg-icons';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {faShoppingBag, faUser} from '@fortawesome/free-solid-svg-icons';
 
 // Import components
 import Layout from './Layout/Layout';
@@ -26,29 +25,6 @@ import UserAccount from './UserAccount/UserAccount';
 
 // Icons Liblary
 library.add(faShoppingBag, faUser);
-
-// Wrap the spring helper to use a bouncy config
-//const bounce = val => {
- // return spring(val, {
- //   stiffnes: 530,
-  //  dumping: 55
- // });
-//};
-
-// child matches will..
-//const bounceTransition = {
- // atEnter: {
- //   opacity: 1
-//  },
-
-//  atLeave: {
-//    opacity: bounce(0)
-// },
-
-//  atActive: {
-//    opacity: bounce(1)
-//  }
-//};
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -75,12 +51,7 @@ export default class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           <Layout>
-            <Switch
-              //atEnter={bounceTransition.atEnter}
-              //atLeave={bounceTransition.atLeave}
-             // atActive={bounceTransition.atActive}
-             // className="witch-wrapper"
-            >
+            <Switch>
               <Route exact path={'/'} component={Home} />
               <Route exact path={'/product/:id'} component={Product} />
               <Route exact path={'/koszyk'} component={Cart} />

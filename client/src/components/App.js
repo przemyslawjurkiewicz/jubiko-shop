@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Import FontAwsome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingBag, faUser } from '@fortawesome/free-solid-svg-icons';
 
 // Import components
 import Layout from './Layout/Layout';
@@ -22,9 +22,10 @@ import Cart from './Cart/Cart';
 import Order from './Order/Order';
 import Register from './Auth/Register';
 import Login from './Auth/Login';
+import UserAccount from './UserAccount/UserAccount';
 
 // Icons Liblary
-library.add(faShoppingBag);
+library.add(faShoppingBag, faUser);
 
 // Wrap the spring helper to use a bouncy config
 //const bounce = val => {
@@ -86,6 +87,7 @@ export default class App extends Component {
               <Route exact path={'/zamowienie'} component={Order} />
               <Route exact path={'/register'} component={Register} />
               <Route exact path={'/login'} component={Login} />
+              <Route exact path={'/konto'} component={UserAccount} />
             </Switch>
           </Layout>
         </BrowserRouter>

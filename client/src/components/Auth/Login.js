@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {loginUser} from '../../actions/authActions';
 import classnames from 'classnames';
+//import 'react-router-dom';
 
 class Login extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       email: '',
       password: '',
@@ -17,7 +18,9 @@ class Login extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/zamowienie'); // push user to order when  login
+      //this.props.history.push('/zamowienie'); // push user to order when  login
+      this.props.history.goBack();
+      //console.log(this.props.history)
     }
     if (nextProps.errors) {
       this.setState({

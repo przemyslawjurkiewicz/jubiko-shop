@@ -3,31 +3,26 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 // Import style
 import './Order.scss';
-import {
- addOrder
-} from '../../actions/orderActions';
+import {addOrder} from '../../actions/orderActions';
+import {onCartRemoveAll} from '../../actions/cartActions';
 import uuid from 'uuid';
 
 export class Order extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      id: uuid(),
-     // userId:'',
-     // summary:'',
-     // products:[]
-    };
+    this.state = {};
   }
 
   onConfirmCliced() {
     const newOrder = {
-      id: this.state.id,
+      id: uuid(),
       userId: this.props.auth.user.id,
       summary: this.props.summary,
       products: this.props.addedToCart
     };
-
     this.props.addOrder(newOrder, this.props.history);
+    this.props.onCartRemoveAll();
+    this.props.history.push('/konto');
   }
 
   render() {
@@ -63,9 +58,12 @@ export class Order extends Component {
               </span>
             </p>
             <br />
-            <button className='btn btn-primary' onClick={() => this.onConfirmCliced()}>
-            ZAMAWIAM Z OBOWĄZKIEM ZAPŁATY
-          </button>
+            <button
+              className='btn btn-primary'
+              onClick={() => this.onConfirmCliced()}
+            >
+              ZAMAWIAM Z OBOWĄZKIEM ZAPŁATY
+            </button>
           </div>
         )}
 
@@ -95,4 +93,7 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps,{addOrder})(Order);
+export default connect(
+  mapStateToProps,
+  {addOrder, onCartRemoveAll}
+)(Order);

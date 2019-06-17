@@ -37,7 +37,6 @@ export class Cart extends Component {
   }
 
   render() {
-    console.log(this.props.summary);
     return (
       <div className='cart d-flex flex-nowrap flex-column align-items-center justify-content-center'>
         <h4 className='align-self-start'>Twój koszyk:</h4>

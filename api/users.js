@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-var routerController = require('./routerController');
+var routerController = require('./routerControllerUser');
 
 
 router.route('/register').post(routerController.postRegister);

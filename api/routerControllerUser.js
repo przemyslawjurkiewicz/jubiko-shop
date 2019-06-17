@@ -4,36 +4,12 @@ const keys = require('../config/keys');
 
 // Load User model
 const User = require('../models/User');
-const Product = require('../models/Product');
-const Order = require('../models/Order');
 
 // Load input validation
 const validateRegisterInput = require('../validation/register');
 const validateLoginInput = require('../validation/login');
 
 const routerController = {
-  home: (req, res) => {
-    Product.find().exec((err, products) => {
-      if (err) {
-        res.status(500).send(err);
-      }
-      res.json({products});
-    });
-  },
-
-  product: (req, res) => {
-    if (!req.params.id) {
-      res.status(500).send('ID field is required.');
-    }
-
-    Product.findOne({_id: req.params.id}).exec((err, product) => {
-      if (err) {
-        res.status(500).send(err);
-      }
-      res.json({product});
-    });
-  },
-
   postRegister: (req, res) => {
     // Form validation
     const {errors, isValid} = validateRegisterInput(req.body);
@@ -117,31 +93,6 @@ const routerController = {
             .json({passwordincorrect: 'Nieprawidłowe hasło'});
         }
       });
-    });
-  },
-
-  postOrder: (req, res) => {
-    const newOrder = new Order({
-      id: req.body.id,
-      userId: req.body.userId,
-      summary: req.body.summary,
-      products: req.body.products
-    });
-    newOrder
-      .save()
-      //.then(order => res.json(order))
-      .catch(err => console.log(err));
-  },
-
-  order: (req, res) => {
-    if (!req.params.id) {
-      res.status(500).send('ID field is required.');
-    }
-    Order.find({userId: req.params.id}).exec((err, orders) => {
-      if (err) {
-        res.status(500).send(err);
-      }
-      res.json([orders]);
     });
   }
 };

@@ -28,8 +28,8 @@ const Faq = () => (
     </Button>
     <UncontrolledCollapse toggler='#toggler2'>
       <p className='p-2'>
-        Aplikacja sklepu internetowego korzysta z Mongo, Express, React, Node
-        (MERN). <br />
+        Aplikacja sklepu internetowego korzysta z Mongo, Express, React, Node.
+        <br />
         Kod na stronie:
         <a href='https://github.com/przemyslawjurkiewicz/jubiko-shop'>
           https://github.com/przemyslawjurkiewicz/jubiko-shop

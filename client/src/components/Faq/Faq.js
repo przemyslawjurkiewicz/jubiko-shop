@@ -45,8 +45,10 @@ const Faq = () => (
     </Button>
     <UncontrolledCollapse toggler='#toggler3'>
       <p className='p-2'>
+        Biżuteria tutaj prezentowana robiona jest ręcznie przez moją żonę.
+        Jeżeli podoba się Tobię to
         <a href='https://www.trendymania.pl/jubiko'>
-          Zapraszam na stronę https://www.trendymania.pl/jubiko
+          zapraszam na stronę https://www.trendymania.pl/jubiko
         </a>
       </p>
     </UncontrolledCollapse>

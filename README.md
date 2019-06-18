@@ -1,5 +1,5 @@
 # Jubiko Shop 
-Aplikacja sklepu internetowego Mongo, Express, React, Node  (MERN).
+Aplikacja sklepu internetowego Mongo, Express, React, Node.
 Pozwala użytkownikowi na:
 - filtrowanie po kategorii
 - sortowanie produktów
